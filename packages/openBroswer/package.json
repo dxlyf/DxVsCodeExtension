@@ -1,11 +1,13 @@
 {
-	"name": "dx-open-browser",
-	"displayName": "open page to browser",
+	"name": "dx-open-broswer",
+	"displayName": "Open Page Broswer",
 	"description": "打开指定URL到默认浏览器",
 	"version": "0.0.1",
+	"license": "MIT",
 	"engines": {
 		"vscode": "^1.50.0"
 	},
+	"publisher": "fanyonglong",
 	"categories": [
 		"Other"
 	],
