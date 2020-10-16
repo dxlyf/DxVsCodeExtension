@@ -1,0 +1,103 @@
+{
+	"name": "dx-open-browser",
+	"displayName": "open page to browser",
+	"description": "打开指定URL到默认浏览器",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.50.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.openBroswer",
+		"onLanguage:html"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.openBroswer",
+				"title": "dx open broswer",
+				"category": "Dx"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.openBroswer",
+				"key": "ctrl+alt+o",
+				"mac": "cmd+alt+o"
+			}
+		],
+		"configuration": [
+			{
+				"title": "Dx Open Broswer Config",
+				"properties": {
+					"dxOpenBroswer.settings.port": {
+						"type":"number",
+						"default": 8955,
+						"minimum": 0,
+						"maximum": 65535,
+						"description": "配置打开的端口"
+					},
+					"dxOpenBroswer.settings.protocol": {
+						"type":"string",
+						"default": "http",
+						"description": "配置协议"
+					},
+					"dxOpenBroswer.settings.hostname": {
+						"type":"string",
+						"default": "localhost",
+						"description": "配置域名"
+					},
+					"dxOpenBroswer.settings.opnOptions": {
+						"type":"object",
+						"default": {},
+						"description": "opn配置"
+					}
+				}
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "extension.openBroswer",
+					"group": "DxOpenBroswer",
+					"when": "resourceLangId==html"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "extension.openBroswer",
+					"group": "DxOpenBroswer",
+					"when": "resourceLangId == html"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.0",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.50.0",
+		"@typescript-eslint/eslint-plugin": "^4.1.1",
+		"@typescript-eslint/parser": "^4.1.1",
+		"eslint": "^7.9.0",
+		"glob": "^7.1.6",
+		"mocha": "^8.1.3",
+		"typescript": "^4.0.2",
+		"vscode-test": "^1.4.0"
+	},
+	"dependencies": {
+		"@types/opn": "^5.5.0",
+		"opn": "^6.0.0"
+	}
+}
